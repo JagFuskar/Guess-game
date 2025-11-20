@@ -1,7 +1,7 @@
 
 '''
 Guessgame.PY:
-Gissa tal spel med 7 försök
+Gissa tal spel med 7 försök.
 
 __author__  = "Didi Sandström"
 __version__ = "2.0.0"
@@ -12,6 +12,7 @@ import random
 import os
 from bcolors import bcolors
 game = True
+game_status = True
 while game == True:
     os.system('cls')
     answer = random.randint(1,100)
@@ -22,6 +23,7 @@ while game == True:
             guess = int(input(f"{bcolors.YELLOW}Guess a number"))
         except:
             print(f"{bcolors.RED}Ogiltigt format, skriv in en siffra!")
+            x = x - 1
             continue
         tries = tries + 1
         if guess == answer:
@@ -35,11 +37,21 @@ while game == True:
             print("The number is higher")
     print(f"{bcolors.YELLOW}Game over")
     print(f"{bcolors.YELLOW}:", tries,"/ 7")
-    continue_1 = str(input("Do you want to continue? y/n"))
-    if continue_1 == "y":
-        print("Initiating new game")
-        game = True
-        continue
-    if continue_1 == "n":
-        print("Stopping game")
-        game = False
+    game_status = False
+    while game_status == False:
+    
+        continue_1 = input("Do you want to continue? y/n")
+            
+        if continue_1 == "y":
+            print("Initiating new game")
+            game = True
+            break
+        elif continue_1 == "n":
+            print("Stopping game")
+            game = False
+            break
+        else:
+            print(f"{bcolors.RED}Ogiltigt format, skriv in y eller n!{bcolors.YELLOW}")
+            game_status = False
+            continue
+        
